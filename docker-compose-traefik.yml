@@ -1,0 +1,26 @@
+version: "3.9"
+
+networks:
+  web:
+    external: true
+  internal:
+    external: false
+
+services:
+  app:
+    build:
+      context: .
+    labels:
+      - traefik.http.routers.express-service-template.rule=Host(`api-ds.edalytics.com`)
+      - traefik.http.routers.express-service-template.tls=true
+      - traefik.http.routers.express-service-template.tls.certresolver=lets-encrypt
+      - traefik.port=3000
+    environment:
+      DB_URL: kalpasbot.8872g.mongodb.net
+      DB_USERNAME: KalpasHRBot
+      DB_PASSWORD: Sunny564696
+      DB_NAME: designerrs
+    networks:
+      - web
+      - internal
+  

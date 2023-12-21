@@ -1,0 +1,137 @@
+const mongoose = require('mongoose')
+
+const schema = new mongoose.Schema(
+  {
+    websiteLogo: Object,
+    retinaLogo: Object,
+    favicon: Object,
+    newUserRole: {
+      type: String,
+      ref: 'Role'
+    },
+    siteTitle: String,
+    tagline: String,
+    companyDescription: String,
+    contactNumber: String,
+    contactEmail: String,
+    pageArrangement: Array,
+    globalTimezone: String,
+    weekStartDay: {
+      type: String,
+      enum: [
+        'monday',
+        'tuesday',
+        'wednesday',
+        'thursday',
+        'friday',
+        'saturday',
+        'sunday',
+      ],
+    },
+    timeFormat: String,
+    defaultCountry: String,
+    bangaloreImage: Object,
+    puneImage: Object,
+    delhiImage: Object,
+    mumbaiImage: Object,
+    onlineImage: Object,
+    assignmentDeadline: {
+      type: String,
+      enum: [
+        'monday',
+        'tuesday',
+        'wednesday',
+        'thursday',
+        'friday',
+        'saturday',
+        'sunday',
+      ],
+    },
+    benefitsOfSignup: [
+      {
+        icon: Object,
+        body: String,
+      },
+    ],
+    adminTags: {
+      field: [String],
+      series: [String],
+      category: [String],
+    },
+    reasonsForAbsent: [String],
+    feedbackTags: [String],
+    softwaresToInstall: [
+      {
+        software: String,
+        url: String,
+      },
+    ],
+    reasonsForJoining: [String],
+    industry: [String],
+    courseTag: [String],
+    fields: [String],
+    allocateBatchesOn: [
+      {
+        type: String,
+        enum: [
+          'monday',
+          'tuesday',
+          'wednesday',
+          'thursday',
+          'friday',
+          'saturday',
+          'sunday',
+        ],
+      },
+    ],
+    socialMediaLinks: {
+      instagram: String,
+      twitter: String,
+      behance: String,
+      dribble: String,
+      medium: String,
+      linkedin: String,
+      facebook: String,
+      youtube: String,
+    },
+    footer: [{ type: String }],
+    googleAnalyticsApiKey: String,
+    seoIntegration: String,
+    facebookPixel: {
+      pixelId: String,
+      accessToken: String,
+    },
+    paytmGateway: String,
+    razorpayGateway: String,
+    razorpayPayroll: String,
+    googleTagManagerId: String,
+    containerCodePlacement: String,
+    cookieConsentMessage: String,
+    googleCompanyProfileLink: String,
+    googleFontsApiKey: String,
+    mailchimpApiKey: String,
+    mailchimpEmail: String,
+    chatbotAPiKey: String,
+    googleMeetApiKey: String,
+    textlocalIntegration: String,
+    vimeoIntegration: String,
+    agamCrm: String,
+    learnerTools: [String],
+    learneSkills: [String],
+    mediumIntegration: String,
+    googleMapIntegration: String,
+    captchaIntegration: String,
+    jobTitle: [String],
+    jobType: [String],
+    ifscApiKey: String,
+  },
+  {
+    toObject: { virtuals: true },
+    toJSON: { virtuals: true },
+    timestamps: true,
+  },
+)
+
+const GlobalSetting = mongoose.model('GlobalSetting', schema)
+
+module.exports = GlobalSetting

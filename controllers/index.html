@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="rzp-button1">Pay</button>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+      var options = {
+        key: 'rzp_test_mdlGhZp3lhJiCr',
+        amount: '20000',
+        currency: 'INR',
+        name: 'Acme Corp',
+        description: 'Test Transaction',
+        order_id: 'order_JXv7diy2fdKNch',
+        handler: function (response) {
+          alert(response.razorpay_payment_id)
+          alert(response.razorpay_order_id)
+          alert(response.razorpay_signature)
+        },
+        prefill: {
+          name: 'Gaurav Kumar',
+          email: 'gaurav.kumar@example.com',
+          contact: '9999999999',
+        },
+        notes: {
+          locationId: 'asf',
+          batchId: 'asf0',
+          courseId: 'asdf',
+          transactionId: '6288ff56df7fbd97c08e73dc',
+        },
+        theme: { color: '#3399cc' },
+      }
+      var rzp1 = new Razorpay(options)
+      rzp1.on('payment.failed', function (response) {
+        alert(response.error.code)
+        alert(response.error.description)
+        alert(response.error.source)
+        alert(response.error.step)
+        alert(response.error.reason)
+        alert(response.error.metadata.order_id)
+        alert(response.error.metadata.payment_id)
+      })
+      document.getElementById('rzp-button1').onclick = function (e) {
+        rzp1.open()
+        e.preventDefault()
+      }
+    </script>
+  </body>
+</html>
